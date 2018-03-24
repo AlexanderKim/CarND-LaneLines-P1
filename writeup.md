@@ -1,6 +1,20 @@
 # **Finding Lane Lines on the Road** 
 
-## Writeup Template
+
+## Pipeline 
+
+### 1. Grayscale
+In a given approach we don not care about the color of the lane, but we're rather going to identify it by contrast.
+It means that in terms of color a lane is going to be something light (either white or yellow) on a dark background which is supposedly asphalt.
+To achieve it we shall turn everything to grayscale.
+
+### 2. Blur
+
+### 3. Canny Edge Detection
+
+### 4. Region of interest
+### 5. Hough lines transformation
+### 6. Lines extrapolation
 
 ### You can use this file as a template for your writeup if you want to submit it as a markdown file. But feel free to use some other method and submit a pdf if you prefer.
 
@@ -19,7 +33,7 @@ The goals / steps of this project are the following:
 
 ---
 
-### Reflection
+## Reflection
 
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
