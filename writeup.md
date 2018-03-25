@@ -17,7 +17,7 @@ Objects which we're after are not only light but also relatively large and conti
 The idea is that each and every pixel will be 'moved' closer to it's neighbours in regards of color, not the location of course.
 Hence the small objects will be 'merged' by the dark background surrounding them, while large objects will retain due to the fact that in this case neighbour pixels are going to be of the same color.
 
-[gray]: ./test_images_output/2_blur_solidWhiteCurve.jpg "Blur"
+![blur]( ./test_images_output/2_blur_solidWhiteCurve.jpg "Blur")
 
 
 ### 3. Canny Edges Detection
@@ -29,13 +29,13 @@ If the difference is within a given treshold, we 'capture' the pixel.
 As a result we'll have only those pixels, which are on the border of areas with drastically different colours i.e. 'edges'.
 In the next steps we will be drawing lines according to these pixels and our Region of interest
 
-[canny]: ./test_images_output/3_canny_filter_solidWhiteCurve.jpg "Canny"
+![canny]( ./test_images_output/3_canny_filter_solidWhiteCurve.jpg "Canny")
 
 
 ### 4. Region of interest
 It is a trapezoid in the bottom and centre, which most probably contains the lines of the lanes. 
 
-[roi]: ./test_images_output/4_region_solidWhiteCurve.jpg "roi"
+![roi]( ./test_images_output/4_region_solidWhiteCurve.jpg "roi")
 
 
 ### 5. Hough lines transformation
@@ -51,7 +51,7 @@ Thus for a given number of points in linear space we get a number of lines in Ho
 
 The algorithm provided by OpenCV is transforming points in a given Region of Interest into lines in Hough space, and searches for their intersection with  
 
-[hough]: ./test_images_output/5_hough_solidWhiteCurve.jpg "hough"
+![hough]( ./test_images_output/5_hough_solidWhiteCurve.jpg "hough")
 
 
 ### 6. Lines extrapolation
@@ -77,7 +77,7 @@ Thus, we calculate x coordinates for bottom and tompmost y coordinates for left 
 
 Profit.
 
-[lines]: ./test_images_output/6_lines_solidWhiteCurve.jpg "lines"
+![lines]( ./test_images_output/6_lines_solidWhiteCurve.jpg "lines")
 
 
 ## Reflection
