@@ -10,12 +10,15 @@ To achieve it we shall turn everything to grayscale.
 
 I believe (though not sure) that another positive side effect is that grayscale lowers the number of possible color values to 1 bit, which possibly makes further computations faster.
 
-[image1]: ./test_images_output/1_gray_solidWhiteCurve.jpg
+[gray]: ./test_images_output/1_gray_solidWhiteCurve.jpg "Grayscale"
 
 ### 2. Blur
 Objects which we're after are not only light but also relatively large and continuous. In order to filter out smaller objects scattered on the asphalt, we will blur them out.
 The idea is that each and every pixel will be 'moved' closer to it's neighbours in regards of color, not the location of course.
 Hence the small objects will be 'merged' by the dark background surrounding them, while large objects will retain due to the fact that in this case neighbour pixels are going to be of the same color.
+
+[gray]: ./test_images_output/2_blur_solidWhiteCurve.jpg "Blur"
+
 
 ### 3. Canny Edges Detection
 Now that we have a blurred grayscale image we can apply the next technique, which is Edge detection.
@@ -26,8 +29,14 @@ If the difference is within a given treshold, we 'capture' the pixel.
 As a result we'll have only those pixels, which are on the border of areas with drastically different colours i.e. 'edges'.
 In the next steps we will be drawing lines according to these pixels and our Region of interest
 
+[canny]: ./test_images_output/3_canny_filter_solidWhiteCurve.jpg "Canny"
+
+
 ### 4. Region of interest
 It is a trapezoid in the bottom and centre, which most probably contains the lines of the lanes. 
+
+[roi]: ./test_images_output/4_region_solidWhiteCurve.jpg "roi"
+
 
 ### 5. Hough lines transformation
 This is the technique to transform the repsresentation of a line into a point in a different space, which is named after it's inverntor.
@@ -41,6 +50,9 @@ Interestingly, a point in linear space is represented as a line in Hough space, 
 Thus for a given number of points in linear space we get a number of lines in Hough space. Those lines, which intersect in Hough space represent a line, going through the corresponding points.
 
 The algorithm provided by OpenCV is transforming points in a given Region of Interest into lines in Hough space, and searches for their intersection with  
+
+[hough]: ./test_images_output/5_hough_solidWhiteCurve.jpg "hough"
+
 
 ### 6. Lines extrapolation
 Given a set of lines out of the previous step, we need to average them into one line per each lane.
@@ -64,6 +76,8 @@ x = y - intercept) / slope
 Thus, we calculate x coordinates for bottom and tompmost y coordinates for left and right inclined lines.
 
 Profit.
+
+[lines]: ./test_images_output/6_lines_solidWhiteCurve.jpg "lines"
 
 
 ## Reflection
