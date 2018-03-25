@@ -10,7 +10,7 @@ To achieve it we shall turn everything to grayscale.
 
 I believe (though not sure) that another positive side effect is that grayscale lowers the number of possible color values to 1 bit, which possibly makes further computations faster.
 
-[gray]: ./test_images_output/1_gray_solidWhiteCurve.jpg "Grayscale"
+![gray]( ./test_images_output/1_gray_solidWhiteCurve.jpg "Grayscale")
 
 ### 2. Blur
 Objects which we're after are not only light but also relatively large and continuous. In order to filter out smaller objects scattered on the asphalt, we will blur them out.
