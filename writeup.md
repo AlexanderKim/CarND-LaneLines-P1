@@ -15,7 +15,7 @@ Objects which we're after are not only light but also relatively large and conti
 The idea is that each and every pixel will be 'moved' closer to it's neighbours in regards of color, not the location of course.
 Hence the small objects will be 'merged' by the dark background surrounding them, while large objects will retain due to the fact that in this case neighbour pixels are going to be of the same color.
 
-### 3. Canny Edge Detection
+### 3. Canny Edges Detection
 Now that we have a blurred grayscale image we can apply the next technique, which is Edge detection.
 The approach here is that the algotirhm is measuring a derivative of pixels color values.
 In human words it essentially means that it measuers how drastically does a given pixel differs from it's neighbors.
@@ -64,47 +64,29 @@ Thus, we calculate x coordinates for bottom and tompmost y coordinates for left 
 Profit.
 
 
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file. But feel free to use some other method and submit a pdf if you prefer.
-
----
-
-**Finding Lane Lines on the Road**
-
-The goals / steps of this project are the following:
-* Make a pipeline that finds lane lines on the road
-* Reflect on your work in a written report
-
-
-[//]: # (Image References)
-
-[image1]: ./examples/grayscale.jpg "Grayscale"
-
----
-
 ## Reflection
 
-### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
+### 1. Modification of  draw_lines() function.
 
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I ....
-
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
-
-If you'd like to include images to show how the pipeline works, here is how to include an image:
-
-![alt text][image1]
+I've implemented the flow, described above in point 6.
 
 
-### 2. Identify potential shortcomings with your current pipeline
+### 2. Identify potential shortcomings with your current pipeline and suggest solutions
 
-
-One potential shortcoming would be what would happen when ...
-
-Another shortcoming could be ...
-
-
-### 3. Suggest possible improvements to your pipeline
-
-A possible improvement would be to ...
-
-Another potential improvement could be to ...
+* Grayscale
+  * **Problem.** I can think of various surface and lighting conditions when the lanes and the road itself would be of the same shade after grayscaling, while still of different colors originally.
+  * **Solution.** I believe there's a way to differentiate lanes by colors. Maybe instead of graysclaing we can play with various color models
+* Blur
+  * **Problem.** Not sure if it's a problem of the pipeline itself, though, lane can be poorly supported and partly erased, so that it won't be a solid line, but scattered pieces of it. In this case blur might erase these pieces.
+  * **Solution.** Didn't check my idea, though I can think of a pipeline, when we can detect clusters by color and location, then apply linear regression for each of them, and filter out by a certain RMSE treshold. Those which will have low error are going to be lines. Not sure if it will work though.    
+* Canny Edges Detection
+  * **Problem.** What I can think of is that in different lighting conditions the treshold might be adjusted in order to be sensitive enough
+  * **Solution.** Again, it is just an idea, though we can measure the derivatives of pixels' colors across the image, get it's distribution, and the take the min and max values of the derivative in a given range like Mean +/- Sigma. Thus we'll get a lighting-sensitive tresholds.   
+* Region of interest
+  * **Problem.** It is fixed. Road can bend left, right or even downhill, and the good part of visible lanes will be out of our view.
+  * **Solution.** I am not quite familiar with deep learning yet, though I intuitively feel that there's a way to train a classifier to detect the exact area containing lanes.  
+* Hough lines transformation
+  * **Possible improvements.** I believe, there's a way to detect curved lines, not only straight. The direction I'm thinking towards is that we take the representation of a line, and build another space out of it's parameters. Nothing prevents us to play with representations of arcs, so that we could transform an arc into a point, and point into a number of lines. Those lines, which intersect in Hough space make the points of an arc in linear space.
+* Lines extrapolation
+  * **Problem.** My implementation is very naive, and works only with straight lines
+  * **Solution.** Research towards detecting curved lines on the previous step, then research on how to represent each line as a vector of parameters, and then average those vectors.
