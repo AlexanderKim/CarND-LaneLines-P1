@@ -8,7 +8,9 @@ In a given approach we don not care about the color of the lane, but we're rathe
 It means that in terms of color a lane is going to be something light (either white or yellow) on a dark background which is supposedly asphalt.
 To achieve it we shall turn everything to grayscale.
 
-I believe (though not sure) that another positive side effect is that grayscale lowers the number of possible color values to 1 bit, which possibly makes further computations faster.  
+I believe (though not sure) that another positive side effect is that grayscale lowers the number of possible color values to 1 bit, which possibly makes further computations faster.
+
+[image1]: ./test_images_output/1_gray_solidWhiteCurve.jpg
 
 ### 2. Blur
 Objects which we're after are not only light but also relatively large and continuous. In order to filter out smaller objects scattered on the asphalt, we will blur them out.
